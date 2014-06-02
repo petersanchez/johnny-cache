@@ -5,6 +5,8 @@ from django.core.cache import get_cache, cache
 
 DISABLE_QUERYSET_CACHE = getattr(settings, 'DISABLE_QUERYSET_CACHE', False)
 
+DISABLE_SELECT_CACHE = getattr(settings, 'JOHNNY_CACHE_DISABLE_SELECT', False)
+
 DEFAULT_BLACKLIST = ['south_migrationhistory']
 
 BLACKLIST = getattr(settings, 'MAN_IN_BLACKLIST',

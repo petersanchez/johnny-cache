@@ -420,7 +420,9 @@ class QueryCacheBackend(object):
             self._original = {}
             for reader in self._read_compilers:
                 self._original[reader] = reader.execute_sql
-                reader.execute_sql = self._monkey_select(reader.execute_sql)
+                if not settings.DISABLE_SELECT_CACHE:
+                    reader.execute_sql = \
+                        self._monkey_select(reader.execute_sql)
             for updater in self._write_compilers:
                 self._original[updater] = updater.execute_sql
                 updater.execute_sql = self._monkey_write(updater.execute_sql)
