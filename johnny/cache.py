@@ -347,7 +347,7 @@ class QueryCacheBackend(object):
                 val = self.cache_backend.get(key, NotInCache(), db)
 
             if not isinstance(val, NotInCache):
-                if val == no_result_sentinel:
+                if val == no_result_sentinel or val is None:
                     val = []
 
                 signals.qc_hit.send(sender=cls, tables=tables,
